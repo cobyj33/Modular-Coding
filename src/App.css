@@ -1,38 +1,66 @@
-.App {
-  text-align: center;
+html, body {
+  height: 100%;
+  width: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  color: white;
+  font-family: 'PT Sans', sans-serif;
+  user-select: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#container {
+  position: relative;
 }
 
-.App-header {
-  background-color: #282c34;
+.nodeArea {
+  position: relative;
+  background-color: #333;
+  min-width: 100vw;
   min-height: 100vh;
+}
+
+.drag-selector {
+  height: 10px;
+  width: 100%;
+  background-color: red;
+}
+
+.drag-selector:hover {
+  transition: background-color 0.2s;
+  background-color: orange;
+}
+
+.drag-selector:active {
+  transition: background-color 0.2s;
+  background-color: darkred;
+}
+
+.node {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  min-width: 50px;
+  min-height: 50px;
+  border: 2px solid white;
+  background-color: black;
+  padding: 10px;
+  padding-top: 0px;
+
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  resize: both;
 }
 
-.App-link {
-  color: #61dafb;
+input {
+  background: linear-gradient(to right, #222, #444);
+  text-shadow: 2px 2px 2px black;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.node-name {
+
+}
+
+.varNode {
+
 }
