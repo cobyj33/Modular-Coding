@@ -1,12 +1,14 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react';
-import DragSelect from './DragSelect';
+import { useRef, useState } from 'react'
+import DragSelect from '../DragSelect';
+import { Connector } from '../Connector';
+import { CloseButton } from '../CloseButton';
 
 export const VariableNode = (props) => {
     const [name, setName] = useState(props.name);
     const [value, setValue] = useState(props.value);
     const [position, setPosition] = useState(props.position);
-    let nodeColor = 'blue';
+    const [open, setOpen] = useState(true);
+    const nodeRef = useRef(null);
 
     function getColor(newVal) {
         switch (typeof newVal) {
@@ -19,16 +21,22 @@ export const VariableNode = (props) => {
     }
 
     return (
+        <>
+        { open && 
         <div className="varNode node" style={{
             backgroundColor: getColor(value),
             left: `${position.left}px`,
             top: `${position.top}px`
-            }}> 
-            <DragSelect position={position} setPosition={setPosition}/>
+            }} ref={nodeRef}> 
+            <DragSelect position={position} setPosition={setPosition} top/>
+            <Connector left right top bottom />
+            <CloseButton openCallback={setOpen} targetReference={nodeRef}/>
             <h3> Variable </h3>
             <input  className="node-name" value={name} onChange={(event) => setName(event.target.value)}/>
             <input className="value-display" value={value} onChange={(event) => setValue(event.target.value)}/>
         </div>
+        }   
+        </>
     )
 }
 

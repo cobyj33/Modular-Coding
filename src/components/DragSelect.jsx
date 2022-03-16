@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-const DragSelect = ({position, setPosition}) => {
+const DragSelect = ({position, setPosition, left, top, right, bottom}) => {
     const dragSelector = useRef(null);
     let isMouseDown = false;
     let mouseX = 0;
@@ -69,9 +69,20 @@ const DragSelect = ({position, setPosition}) => {
       window.removeEventListener('mousemove', updateMouse);
     });
 
+    let orientation = ''
+    if (top) {
+        orientation = 'top oriented'
+    } else if (bottom) {
+        orientation = 'bottom oriented'
+    } else if (left) {
+        orientation = 'left oriented'
+    } else if (right) {
+        orientation = 'right oriented'
+    }
+
 
     return (
-        <div className="drag-selector" onMouseDown={startDrag} ref={dragSelector}> </div>
+        <div className={`drag-selector ${orientation}`} onMouseDown={startDrag} ref={dragSelector}> </div>
     )
 }
 
