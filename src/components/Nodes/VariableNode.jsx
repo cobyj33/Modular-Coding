@@ -3,12 +3,17 @@ import DragSelect from '../DragSelect';
 import { Connector } from '../Connector';
 import { CloseButton } from '../CloseButton';
 
-export const VariableNode = (props) => {
-    const [name, setName] = useState(props.name);
-    const [value, setValue] = useState(props.value);
-    const [position, setPosition] = useState(props.position);
+export const VariableNode = ({ nodeObj, position: initialPosition}) => {
+    const [name, setName] = useState(nodeObj.name);
+    const [position, setPosition] = useState(initialPosition);
     const [open, setOpen] = useState(true);
     const nodeRef = useRef(null);
+
+    function setPos(pos) {
+        nodeObj.position = pos;
+        setPosition(pos);
+    }
+    
 
     function getColor(newVal) {
         switch (typeof newVal) {
@@ -20,20 +25,32 @@ export const VariableNode = (props) => {
         return 'gray'
     }
 
+    function changeName(name) {
+        nodeObj.name = name;
+        setName(name);
+    }
+
+    function addConnection(node) {
+        nodeObj.connect(node);
+    }
+
+
     return (
         <>
         { open && 
         <div className="varNode node" style={{
-            backgroundColor: getColor(value),
             left: `${position.left}px`,
             top: `${position.top}px`
             }} ref={nodeRef}> 
-            <DragSelect position={position} setPosition={setPosition} top/>
+            <DragSelect position={position} setPosition={setPos}/>
             <Connector left right top bottom />
-            <CloseButton openCallback={setOpen} targetReference={nodeRef}/>
+            <CloseButton style={{
+                position: 'absolute',
+                right: 0,
+                top: 0
+            }} openCallback={setOpen} targetReference={nodeRef} onDelete={nodeObj.delete.bind(nodeObj)}/>
             <h3> Variable </h3>
-            <input  className="node-name" value={name} onChange={(event) => setName(event.target.value)}/>
-            <input className="value-display" value={value} onChange={(event) => setValue(event.target.value)}/>
+            <input className="node-name" value={name} onChange={(event) => setName(event.target.value)}/>
         </div>
         }   
         </>
@@ -42,7 +59,6 @@ export const VariableNode = (props) => {
 
 VariableNode.defaultProps = {
     name: "i",
-    value: "1",
     position: {
         top: 0,
         left: 0

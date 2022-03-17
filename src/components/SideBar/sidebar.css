@@ -1,0 +1,21 @@
+:root {
+  --sidebar-width: 50px;
+  --sidebar-extend-width: calc(var(--sidebar-width) * 2); 
+  --sidebar-height: 100vh;
+}
+
+#sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: var(--sidebar-height);
+    width: var(--sidebar-width);
+    min-width: 50px;
+    background-color: black;
+    z-index: 100;
+    opacity: 1;
+  }
+  
+#sidebar:hover {
+  --sidebar-width: var(--sidebar-extend-width);
+}

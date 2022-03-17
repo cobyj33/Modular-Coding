@@ -1,10 +1,15 @@
-export const CloseButton = ({openCallback, targetReference}) => {
+export const CloseButton = ({openCallback, targetReference, onDelete}) => {
 
   function close() {
     if (targetReference) {
       window.hideElement(targetReference.current);
-      setTimeout(() => openCallback(false), 200);
+      setTimeout(() => end(), 200);
     } else {
+      end()
+    }
+
+    function end() {
+      onDelete();
       openCallback(false);
     }
   }

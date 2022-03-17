@@ -5,7 +5,7 @@ export const AreaBackground = ({instructions}) => {
 
     const canvasRef = useRef(null);
 
-    useEffect(() => {
+    function draw() {
         if (canvasRef.current === null) { return; }
         const canvas = canvasRef.current;
         console.log(canvas);
@@ -24,8 +24,14 @@ export const AreaBackground = ({instructions}) => {
             }
         }
 
-        instructions.forEach(instruction => instruction())
+        instructions.forEach(instruction => instruction());
+    }
 
+    useEffect(() => {
+        draw();
+        window.addEventListener('resize', draw);
+
+        return () => window.removeEventListener('resize', draw);
     }, [])
 
 

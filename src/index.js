@@ -3,6 +3,34 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
+window.hash = function(obj) {
+  let hash = 0;
+    if (obj instanceof Object) {
+      const elements = [...Object.keys(obj), ...Object.values(obj)];
+
+      if (elements.length == 0) return hash;
+      for (let i = 0 ;i<elements.length ; i++) {
+        const characters = [...String(elements[i])];
+        if (characters.length == 0) { continue; }
+        const ch = characters.reduce((acc, val) => acc += val.charCodeAt(0), 0)
+        console.log(ch);
+        hash = ((hash << 5) - hash) + ch;
+        hash = hash & hash;
+      }
+    } else {
+      const string = String(obj)
+      if (string.length == 0) return hash;
+      for (let i = 0 ;i<string.length ; i++) {
+        const ch = string.charCodeAt(i);
+        hash = ((hash << 5) - hash) + ch;
+        hash = hash & hash;
+      }
+    }
+
+    console.log(hash);
+    return hash;
+}
+
 window.hideElement = function(element) {
   element.style.width = 0;
   element.style.height = 0;
