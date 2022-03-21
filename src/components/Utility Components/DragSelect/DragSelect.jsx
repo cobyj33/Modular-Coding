@@ -1,6 +1,7 @@
 import { useRef } from "react";
+import "./dragselect.css";
 
-const DragSelect = ({position, setPosition, left, top, right, bottom}) => {
+const DragSelect = ({position, setPosition, left, top, right, bottom, children}) => {
     const dragSelector = useRef(null);
     let isMouseDown = false;
     let mouseX = 0;
@@ -82,7 +83,9 @@ const DragSelect = ({position, setPosition, left, top, right, bottom}) => {
 
 
     return (
-        <div className={`drag-selector ${orientation}`} onMouseDown={startDrag} ref={dragSelector}> </div>
+        <div className={`drag-selector ${orientation}`} onMouseDown={startDrag} ref={dragSelector}>
+            {children}
+        </div>
     )
 }
 

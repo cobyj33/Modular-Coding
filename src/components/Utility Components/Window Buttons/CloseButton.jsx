@@ -9,8 +9,8 @@ export const CloseButton = ({openCallback, targetReference, onDelete}) => {
     }
 
     function end() {
-      onDelete();
       openCallback(false);
+      if (onDelete) { onDelete(); }
     }
   }
 
