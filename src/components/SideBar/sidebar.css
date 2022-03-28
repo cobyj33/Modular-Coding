@@ -1,21 +1,44 @@
 :root {
-  --sidebar-width: 50px;
+  --sidebar-columns: 1 / 2;
+  --sidebar-rows: 1 / var(--grid-rows);
   --sidebar-extend-width: calc(var(--sidebar-width) * 2); 
   --sidebar-height: 100vh;
 }
 
 #sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: var(--sidebar-height);
-    width: var(--sidebar-width);
-    min-width: 50px;
+    grid-row: var(--sidebar-rows);
+    grid-column: var(--sidebar-columns);
+    grid-column-end: 2;
     background-color: black;
     z-index: 100;
     opacity: 1;
   }
   
 #sidebar:hover {
-  --sidebar-width: var(--sidebar-extend-width);
+  transition: grid-column-end 1s;
+  grid-column-end: 3;
+}
+
+.directory-contents {
+  width: 0;
+  height: 0;
+  transition: width 0.1s, height 0.1s;
+}
+
+.directory-button, .file-button {
+  border: 1px solid white;
+  width: 100%;
+}
+
+.directory-button {
+  border: 1px solid white;
+  background-color: #222;
+}
+
+.file-button {
+  background-color: #444;
+}
+
+.file-button.opened {
+  background: linear-gradient(to right, #444, #AAA);
 }

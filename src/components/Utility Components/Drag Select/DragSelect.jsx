@@ -1,7 +1,10 @@
 import { useRef } from "react";
 import "./dragselect.css";
+import $ from "jquery";
 
-const DragSelect = ({position, setPosition, left, top, right, bottom, children}) => {
+export const DragSelect = ({parentRef, boundingRef, position, setPosition, left, top, right, bottom, children, style}) => {
+
+
     const dragSelector = useRef(null);
     let isMouseDown = false;
     let mouseX = 0;
@@ -10,27 +13,22 @@ const DragSelect = ({position, setPosition, left, top, right, bottom, children})
     let mouseYOffset = 0;
 
     function updatePosition() {
-        console.log(isMouseDown);
         if (isMouseDown) {
-            let nextX = mouseX - mouseXOffset;
-            let nextY = mouseY - mouseYOffset;
-            let leftPos = nextX;
-            let topPos = nextY;
+            const parent = parentRef ? parentRef.current : window;
+            const bounds = boundingRef?.current ? boundingRef.current.getBoundingClientRect() : { left: 0, top: 0, width: window.innerWidth, height: window.innerHeight };
+            let leftPos = mouseX - mouseXOffset - bounds.left;
+            let topPos = mouseY - mouseYOffset - bounds.top;
 
-            if (nextX > 0 && nextX < window.innerWidth - position.width) {
-                leftPos = nextX;
-            } else if (nextX < 0) {
-                leftPos = "0";
-            } else if (nextX > window.innerWidth - position.width) {
-                leftPos = window.innerWidth - position.width;
+            if (leftPos < 0) {
+                leftPos = 0;
+            } else if (leftPos > bounds.width - $(parent).width()) {
+                leftPos = bounds.width - $(parent).width()
             }
 
-            if (nextY > 0 && nextY < window.innerHeight - position.height) {
-                topPos = nextY;
-            } else if (nextY < 0) {
+            if (topPos < 0) {
                 topPos = 0;
-            } else if (nextY > window.innerHeight - position.height) {
-                topPos = window.innerHeight - position.height;
+            } else if (topPos > bounds.height - $(parent).height()) {
+                topPos = bounds.height - $(parent).height()
             }
 
             setPosition({
@@ -44,8 +42,8 @@ const DragSelect = ({position, setPosition, left, top, right, bottom, children})
     }
 
     function updateMouse(mouseEvent) {
-      mouseX = mouseEvent.clientX;
-      mouseY = mouseEvent.clientY;
+        mouseX = mouseEvent.clientX;
+        mouseY = mouseEvent.clientY;
     }
 
     function startDrag(e) {
@@ -57,10 +55,9 @@ const DragSelect = ({position, setPosition, left, top, right, bottom, children})
       window.addEventListener('mousemove', updateMouse);
       updateMouse(e);
 
-      let selectorPosition = dragSelector.current.getBoundingClientRect();
       isMouseDown = true;
-      mouseXOffset = Math.abs(mouseX - selectorPosition.left);
-      mouseYOffset = Math.abs(mouseY - selectorPosition.top);
+      mouseXOffset = Math.abs(e.clientX - $(dragSelector.current).offset().left);
+      mouseYOffset = Math.abs(e.clientY - $(dragSelector.current).offset().top);
 
       updatePosition();
     };
@@ -83,7 +80,7 @@ const DragSelect = ({position, setPosition, left, top, right, bottom, children})
 
 
     return (
-        <div className={`drag-selector ${orientation}`} onMouseDown={startDrag} ref={dragSelector}>
+        <div className={`drag-selector ${orientation}`} onMouseDown={(event) => startDrag(event)} ref={dragSelector} style={style}>
             {children}
         </div>
     )

@@ -1,3 +1,8 @@
+:root {
+  --grid-rows: 20;
+  --grid-cols: 20;
+}
+
 html, body {
   height: 100%;
   width: 100%;
@@ -10,21 +15,23 @@ html, body {
   font-family: 'PT Sans', sans-serif;
   user-select: none;
   position: relative;
-  transition: width 0.15s, height 0.15s, padding 0.15s, border 0.15s;
+  transition: width 0.15s, height 0.15s, padding 0.15s, border 0.15s, grid-row 0.15s, grid-column 0.15s;
 }
 
-#container {
+#root {
+  display: grid;
+  grid-template-rows: repeat(var(--grid-rows), calc(100% / var(--grid-rows)));
+  grid-template-columns: repeat(var(--grid-cols), calc(100% / var(--grid-cols)));
+  justify-content: stretch;
+  align-items: stretch;
+  width: 100%;
+  height: 100%;
+}
+
+#edit-area {
   position: relative;
-}
-
-.nodeArea {
-  position: fixed;
-  background: radial-gradient(#333, #112);
-  max-width: calc(100vw - var(--sidebar-width));
-  max-height: calc(100vh - var(--bottom-bar-height));
-  right: 0;
-  top: 0;
-  resize: both;
+  grid-row: 1 / calc(var(--grid-rows));
+  grid-column: 2 / calc(var(--grid-cols) + 1);
 }
 
 .node {
@@ -91,28 +98,6 @@ input {
   border: 2px solid black;
 }
 
-.node-area-background {
-  width: 100%;
-  height: 100%;
-  z-index: 0; 
-  cursor: crosshair;
-}
-
-
-.close-button {
-  color: red;
-  background: none;
-  border: none;
-}
-
-.scope-display {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  background-color: #222;
-  border: 1px solid white;
-  border-radius: 5px;
-}
 
 .window-utility-buttons {
   display: flex;

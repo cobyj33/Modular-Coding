@@ -1,0 +1,10 @@
+.close-button, .maximize-button, .minimize-button {
+  background: none;
+  border: none;
+}
+
+.close-button {
+    color: red;
+    background: none;
+    border: none;
+  }

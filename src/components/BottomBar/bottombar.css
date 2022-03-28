@@ -4,13 +4,10 @@
 }
 
 #bottombar {
-    position: fixed;
-    left: var(--sidebar-width);
-    bottom: 0;
-    width: var(--bottom-bar-width);
-    height: var(--bottom-bar-height);
-    background-color: black;
+    grid-column: 1 / calc(var(--grid-cols) + 1);
+    grid-row: calc(var(--grid-rows)) / calc(var(--grid-rows) + 1); 
 
+    background-color: black;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;

@@ -1,5 +1,5 @@
 import { useContext, useRef, useState } from 'react'
-import DragSelect from '../Utility Components/DragSelect/DragSelect';
+import DragSelect from '../Utility Components/Drag Select/DragSelect';
 import { Connector } from '../Connector';
 import { CloseButton } from '../Utility Components/Window Buttons/CloseButton';
 import { NodeContext } from '../../App';
@@ -9,9 +9,6 @@ export const VariableNode = ({ nodeObj, position: initialPosition}) => {
     const [position, setPosition] = useState(initialPosition);
     const [open, setOpen] = useState(true);
     const nodeRef = useRef(null);
-
-    const { nodeState } = useContext(NodeContext);
-    const [nodes, setNodes] = nodeState;
 
     function setPos(pos) {
         nodeObj.position = pos;
@@ -38,11 +35,6 @@ export const VariableNode = ({ nodeObj, position: initialPosition}) => {
         nodeObj.connect(node);
     }
 
-    function onDelete() {
-        nodeObj.separate();
-        setNodes(nodes.filter(node => node !== nodeObj));
-    }
-
 
     return (
         <>
@@ -51,15 +43,13 @@ export const VariableNode = ({ nodeObj, position: initialPosition}) => {
             left: `${position.left}px`,
             top: `${position.top}px`
             }} ref={nodeRef}> 
-            <DragSelect position={position} setPosition={setPos}/>
+            <DragSelect position={position} setPosition={setPos} parentRef={nodeRef}/>
             <Connector left right top bottom />
             <CloseButton style={{
                 position: 'absolute',
                 right: 0,
                 top: 0
-            }} openCallback={setOpen} targetReference={nodeRef} onDelete={onDelete}/>
-            <h3> Variable </h3>
-            <input className="node-name" value={name} onChange={(event) => setName(event.target.value)}/>
+            }} openCallback={setOpen} targetReference={nodeRef}/>
         </div>
         }   
         </>

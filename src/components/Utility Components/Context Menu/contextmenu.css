@@ -1,0 +1,13 @@
+.context-menu {
+    position: fixed;
+    display: flex;
+    overflow: scroll;
+    z-index: 999;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: stretch;
+  
+    min-width: 200px;
+    background-color: #444;
+  }

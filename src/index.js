@@ -26,7 +26,6 @@ window.hash = function(obj) {
       }
     }
 
-    console.log(hash);
     return hash;
 }
 
@@ -45,6 +44,22 @@ window.showElement = function(element) {
   element.style.padding = '';
   element.style.overflow = '';
   element.style.border = '';
+}
+
+window.clickInsideElement = function(event, className) {
+  var el = event.srcElement || event.target;
+  
+  if ( el.classList.contains(className) ) {
+      return el;
+  } else {
+      while ( el = el.parentNode ) {
+          if ( el.classList && el.classList.contains(className) ) {
+              return el;
+          }
+      }
+  }
+  
+  return false;
 }
 
 ReactDOM.render(

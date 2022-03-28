@@ -1,3 +1,5 @@
+import "./windowbuttons.css";
+
 export const CloseButton = ({openCallback, targetReference, onDelete}) => {
 
   function close() {

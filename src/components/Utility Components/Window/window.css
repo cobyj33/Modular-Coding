@@ -1,0 +1,19 @@
+.window {
+    position: absolute;
+    display: block;
+    margin: 0;
+    background: radial-gradient(#333, #112);
+    width: min(50vw, 50vh);
+    height: min(50vw, 50vh);
+    max-width: calc(100vw - var(--sidebar-width));
+    max-height: calc(100vh - var(--bottom-bar-height));
+    right: 0;
+    top: 0;
+    resize: both;
+    overflow: hidden;
+  }
+  
+.window * {
+margin: 0;
+}
+  
