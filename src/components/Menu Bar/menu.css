@@ -1,0 +1,34 @@
+:root {
+    --menu-row-start: 1;
+    --menu-row-end: 3;
+    --menu-column-start: 1;
+    --menu-column-end: calc(var(--grid-cols) + 1)
+}
+
+.menu {
+    grid-row: var(--menu-row-start) / var(--menu-row-end);
+    grid-column: var(--menu-column-start) / var(--menu-column-end);
+    background-color: #000;
+    margin-top: 0;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    z-index: 100;
+}
+
+.menu-item {
+    margin-right: 10px;
+}
+
+.menu-item button {
+    background-color: #222;
+    border: none;
+    border-radius: 5px;
+}
+
+.menu-item button:hover {
+    transition: background-color 0.2s;
+    background-color: #222;
+}

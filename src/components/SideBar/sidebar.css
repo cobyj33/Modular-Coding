@@ -1,22 +1,24 @@
 :root {
-  --sidebar-columns: 1 / 2;
-  --sidebar-rows: 1 / var(--grid-rows);
+  --sidebar-row-start: var(--menu-row-end);
+  --sidebar-row-end: var(--bottom-bar-row-start);
+  --sidebar-column-start: 1;
+  --sidebar-column-end: 3;
   --sidebar-extend-width: calc(var(--sidebar-width) * 2); 
-  --sidebar-height: 100vh;
 }
 
 #sidebar {
-    grid-row: var(--sidebar-rows);
-    grid-column: var(--sidebar-columns);
+    grid-row: var(--sidebar-row-start) / var(--sidebar-row-end);
+    grid-column: var(--sidebar-column-start) / var(--sidebar-column-end);
     grid-column-end: 2;
     background-color: black;
     z-index: 100;
-    opacity: 1;
+    opacity: 0.2;
   }
   
 #sidebar:hover {
-  transition: grid-column-end 1s;
-  grid-column-end: 3;
+  transition: grid-column-end 1s, opacity 0.5s;
+  grid-column-end: 6;
+  opacity: 1;
 }
 
 .directory-contents {
@@ -25,7 +27,7 @@
   transition: width 0.1s, height 0.1s;
 }
 
-.directory-button, .file-button {
+.directory-button, .file-button, .file-input {
   border: 1px solid white;
   width: 100%;
 }
@@ -41,4 +43,9 @@
 
 .file-button.opened {
   background: linear-gradient(to right, #444, #AAA);
+}
+
+.file-input {
+  background-color: #666;
+  color: green
 }

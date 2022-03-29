@@ -1,6 +1,6 @@
 :root {
-  --grid-rows: 20;
-  --grid-cols: 20;
+  --grid-rows: 40;
+  --grid-cols: 40;
 }
 
 html, body {
@@ -16,6 +16,7 @@ html, body {
   user-select: none;
   position: relative;
   transition: width 0.15s, height 0.15s, padding 0.15s, border 0.15s, grid-row 0.15s, grid-column 0.15s;
+  margin: 0;
 }
 
 #root {
@@ -30,8 +31,8 @@ html, body {
 
 #edit-area {
   position: relative;
-  grid-row: 1 / calc(var(--grid-rows));
-  grid-column: 2 / calc(var(--grid-cols) + 1);
+  grid-row: var(--menu-row-end) / var(--bottom-bar-row-start);
+  grid-column: var(--sidebar-column-end) / calc(var(--grid-cols) + 1);
 }
 
 .node {

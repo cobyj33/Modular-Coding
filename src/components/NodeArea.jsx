@@ -15,11 +15,11 @@ export const NodeArea = ({ scope, file, container }) => {
 
     const topBar = () => { return (
       <>
-        <h3>
-          {file.name}
-          <HoverPrompt> {file.path} </HoverPrompt> 
-        </h3>
-        <h3> {scope} </h3>
+          <DynamicText text={file.name}> 
+            <HoverPrompt> {file.path} </HoverPrompt> 
+          </DynamicText>
+          
+        <DynamicText text={scope} />
       </>
     ) }
 
@@ -64,7 +64,7 @@ export const NodeArea = ({ scope, file, container }) => {
             <AreaBackground coordinates={coordinates}/>
             <div className='coordinate-display'> 
               {/* X: {coordinates.x}, Y: {coordinates.y} */}
-              <DynamicText> X: {coordinates.x}, Y: {coordinates.y} </DynamicText>
+              <DynamicText text={`X: ${coordinates.x}, Y: ${coordinates.y}`} />
             </div>
           </div>
         </Window>

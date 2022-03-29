@@ -176,9 +176,10 @@ export class File {
     }
 
     set name(newName) {
-        const location = this.path.split('/');
+        let location = this.path.split('/');
         location[location.length - 1] = newName;
-        return location.reduce((string, last) => string += `/${last}`, "");
+        const newPath = location.reduce((string, last) => string += `/${last}`, "");
+        this.path = newPath.substr(1, newPath.length - 1)
     }
 
     get extension() {
@@ -218,9 +219,10 @@ export class Directory {
     }
 
     set name(newName) {
-        const location = this.path.split('/');
+        let location = this.path.split('/');
         location[location.length - 1] = newName;
-        return location.reduce((string, last) => string += `/${last}`, "");
+        const newPath = location.reduce((string, last) => string += `/${last}`, "");
+        this.path = newPath.substr(1, newPath.length - 1)
     }
 
     removeChild(name) {

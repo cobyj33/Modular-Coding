@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import "./dynamictext.css"
 
-export const DynamicText = ({lines: desiredLines, children}) => {
+export const DynamicText = ({lines: desiredLines, children, text}) => {
     const textBoxReference = useRef(null)
     const lines = desiredLines && desiredLines != 0 ? desiredLines : 1;
     let width = 0;
@@ -14,11 +14,14 @@ export const DynamicText = ({lines: desiredLines, children}) => {
         console.log('width, ', width, 'height ', height )
     })
 
+    //default 0 0 56 18 viewbox
+
   return (
-    <svg className='dynamic-textbox' ref={textBoxReference} width={width / lines} height={height}>
-        <text>
-            {children}
-        </text>
-    </svg>
+    <div className="dynamic-textbox">
+      { children }
+      <svg className='dynamic-textbox-svg' ref={textBoxReference} viewBox={`0 0 56 18`}> 
+          <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" width='56' height='18' color='white'> { text } </text>
+      </svg>
+    </div>
   )
 }

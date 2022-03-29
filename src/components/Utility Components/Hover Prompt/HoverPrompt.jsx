@@ -9,6 +9,8 @@ export const HoverPrompt = ({parentReference, children}) => {
 
     useLayoutEffect(() => {
         const parent = parentReference ? parentReference.current : promptReference?.current.parentElement;
+
+
         const hide = () => setOpen(false);
         const show = () => setOpen(true);
         const updatePosition = (event) => setPosition({ left: event.clientX + mouseViewOffset, top: event.clientY + mouseViewOffset})

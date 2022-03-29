@@ -1,11 +1,13 @@
 :root {
     --bottom-bar-width: 100vw;
     --bottom-bar-height: 50px;
+    --bottom-bar-row-start: calc(var(--grid-rows) - 2);
+    --bottom-bar-row-end: calc(var(--grid-rows) + 1);
 }
 
 #bottombar {
     grid-column: 1 / calc(var(--grid-cols) + 1);
-    grid-row: calc(var(--grid-rows)) / calc(var(--grid-rows) + 1); 
+    grid-row: var(--bottom-bar-row-start) / var(--bottom-bar-row-end);
 
     background-color: black;
     display: flex;
@@ -13,10 +15,6 @@
     flex-wrap: nowrap;
     justify-content: space-evenly;
     align-items: center;
-}
-
-#bottombar:hover {
-    --bottom-bar-height: min(10vh, 100px);
 }
 
 #bottombar button {

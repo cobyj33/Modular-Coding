@@ -11,35 +11,33 @@ export const ContextMenu = ({position: initialPosition, children, bindReference}
       const bindedElement = bindReference ? bindReference.current : contextMenuReference.current.parentElement;
       const contextMenu = contextMenuReference.current;
 
-      const clickHandler = (event) => {
-        console.log(bindedElement.classList);
-        if ( Array.from(bindedElement.classList).some(className => clickInsideElement(event, className)) ) {
-          hide()
-        } else if (event.target != bindedElement) {
+      const clickHandler = function(event) {
+        if ( !Array.from(bindedElement.classList).some(className => clickInsideElement(event, className)) ) {
           hide()
         }
       }
 
       function show(event) {  
-        console.log('show event')
         event.preventDefault();
         if (event.button == 2 && !open) {
-          console.log('showing context menu');
-          window.addEventListener('click', clickHandler)
           setPosition({left: event.clientX, top: event.clientY})
           setOpen(true)
+          window.addEventListener('click', clickHandler)
+          window.addEventListener('contextmenu', clickHandler)
         }
       };
 
       function hide() { 
         window.removeEventListener('click', clickHandler)
+        window.removeEventListener('contextmenu', clickHandler)
         setOpen(false)
       }
 
-      bindedElement.addEventListener('contextmenu', (event) => show(event));
+      bindedElement.addEventListener('contextmenu', show);
 
       return () => {
-        bindedElement.removeEventListener('click', show)
+        bindedElement.removeEventListener('contextmenu', show)
+        window.removeEventListener('contextmenu', clickHandler)
         window.removeEventListener('click', clickHandler)
       }
     }, [])
