@@ -7,7 +7,6 @@ export const AreaBackground = ({instructions, coordinates}) => {
     function draw() {
         if (canvasRef.current === null) { return; }
         const canvas = canvasRef.current;
-        console.log(canvas);
         const context = canvas.getContext('2d');
         canvas.width = $(canvas).outerWidth()
         canvas.height = $(canvas).outerHeight()

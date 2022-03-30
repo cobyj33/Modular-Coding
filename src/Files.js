@@ -216,6 +216,7 @@ export class Directory {
         this.lastModified = new Date().toDateString();
         this.created = new Date().toDateString();
         this.parent = parent ? parent : 'root';
+        this.data = {}
     }
 
     get name() {

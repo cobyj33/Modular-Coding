@@ -132,7 +132,7 @@ function openedFilesReducer(state, action) {
 export const GlobalContext = createContext(null);
 function App() {
     const [fileManager, managerDispatch] = useReducer(fileManagerReducer, new FileManager());
-    const [openedFiles, openedFilesDispatch] = useReducer(openedFilesReducer, { files: [fileManager.master], selected: fileManager.master })
+    const [openedFiles, openedFilesDispatch] = useReducer(openedFilesReducer, { files: [], selected: undefined })
     const [nodeSelection, setNodeSelection] = useState('variable');
 
     const editAreaRef = useRef(null);

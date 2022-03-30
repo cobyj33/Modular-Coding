@@ -7,18 +7,17 @@ export const hash = function(obj) {
     if (obj instanceof Object) {
       const elements = [...Object.keys(obj), ...Object.values(obj)];
 
-      if (elements.length == 0) return hash;
+      if (elements.length === 0) return hash;
       for (let i = 0 ;i<elements.length ; i++) {
         const characters = [...String(elements[i])];
-        if (characters.length == 0) { continue; }
+        if (characters.length === 0) { continue; }
         const ch = characters.reduce((acc, val) => acc += val.charCodeAt(0), 0)
-        console.log(ch);
         hash = ((hash << 5) - hash) + ch;
         hash = hash & hash;
       }
     } else {
       const string = String(obj)
-      if (string.length == 0) return hash;
+      if (string.length === 0) return hash;
       for (let i = 0 ;i<string.length ; i++) {
         const ch = string.charCodeAt(i);
         hash = ((hash << 5) - hash) + ch;
@@ -46,7 +45,7 @@ window.showElement = function(element) {
   element.style.border = '';
 }
 
-window.clickInsideElement = function(event, className) {
+export const clickInsideElement = function(event, className) {
   var el = event.srcElement || event.target;
   
   if ( el.classList.contains(className) ) {

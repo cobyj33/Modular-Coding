@@ -17,3 +17,12 @@
   right: 10px;
   bottom: 10px;
 }
+
+.test-div {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+}

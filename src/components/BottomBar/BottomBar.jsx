@@ -1,6 +1,7 @@
 import { useContext, } from 'react';
 import { GlobalContext } from '../../App';
 import "./bottombar.css"
+import { validVariableTypes } from '../../NodeScript';
 
 //types of nodes: value, variable, function, array, object, loop, class
 export const BottomBar = () => {
@@ -10,9 +11,10 @@ export const BottomBar = () => {
   function changeSelection(selection) {
     console.log('changing to ', selection);
     if (selection == nodeSelection) { return; }
-    switch (selection) {
-      case "variable": setNodeSelection("variable");
-      default: setNodeSelection("variable");
+    if (validVariableTypes.some(type => type === selection)) {
+      setNodeSelection(selection)
+    } else {
+      console.error('type ', selection, ' is not a valid variable type');
     }
   }
 

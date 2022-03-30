@@ -1,0 +1,51 @@
+.node {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  min-width: 50px;
+  min-height: 50px;
+  border: 1px solid black;
+  background-color: black;
+  padding: 10px;
+  padding-top: 0px;
+
+  display: flex;
+  flex-direction: column;
+  resize: both;
+}
+
+
+.connector {
+    position: absolute;
+    background-color: black;
+    width: 5%;
+    height: 5%;
+    max-width: 5px;
+    max-height: 5px;
+  }
+  
+  .connector.left {
+    left: 0;
+    top: 50%;
+  }
+  
+  .connector.right {
+    right: 0;
+    top: 50%;
+  }
+  
+  .connector.top {
+    top: 0;
+    left: 50%;
+  }
+  
+  .connector.bottom {
+    bottom: 0;
+    left: 50%;
+  }
+  
+  .connector:hover {
+    transition: background-color 0.2s, border 0.4s;
+    background-color: green;
+    border: 2px solid black;
+  }

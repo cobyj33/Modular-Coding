@@ -8,10 +8,10 @@ export const DynamicText = ({lines: desiredLines, children, text}) => {
     let height = 0;
 
     useEffect(() => {
-        console.log(textBoxReference.current)
+        // console.log(textBoxReference.current)
         width = textBoxReference.current ? textBoxReference.current.clientWidth : 0;
         height = textBoxReference.current ? textBoxReference.current.clientHeight : 0;
-        console.log('width, ', width, 'height ', height )
+        // console.log('width, ', width, 'height ', height )
     })
 
     //default 0 0 56 18 viewbox
