@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/Modular-Coding/static/css/main.a4ca86a1.css",
+    "main.js": "/Modular-Coding/static/js/main.53fbd73f.js",
+    "static/media/Stark.jpg": "/Modular-Coding/static/media/Stark.ca3c9b40ccb76cb6c759.jpg",
+    "index.html": "/Modular-Coding/index.html",
+    "main.a4ca86a1.css.map": "/Modular-Coding/static/css/main.a4ca86a1.css.map",
+    "main.53fbd73f.js.map": "/Modular-Coding/static/js/main.53fbd73f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a4ca86a1.css",
+    "static/js/main.53fbd73f.js"
+  ]
+}
