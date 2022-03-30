@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-window.hash = function(obj) {
+export const hash = function(obj) {
   let hash = 0;
     if (obj instanceof Object) {
       const elements = [...Object.keys(obj), ...Object.values(obj)];

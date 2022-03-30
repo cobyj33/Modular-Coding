@@ -38,8 +38,12 @@ function trimRoot(path) {
 
 export class FileManager {
     constructor(master) {
-        this.master = master ? master : new Directory({path: 'root', parent: ''})
-        this.addFile('root/Untitled.txt');
+        if (!master) {
+            this.master = new Directory({path: 'root', parent: ''})
+            this.addFile('root/Untitled.txt');
+        } else {
+            this.master = master;
+        }
     }
 
     printFiles() {

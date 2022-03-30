@@ -1,8 +1,7 @@
-import { useContext, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import DragSelect from '../Utility Components/Drag Select/DragSelect';
 import { Connector } from '../Connector';
 import { CloseButton } from '../Utility Components/Window Buttons/CloseButton';
-import { NodeContext } from '../../App';
 
 export const VariableNode = ({ nodeObj, position: initialPosition}) => {
     const [name, setName] = useState(nodeObj.name);

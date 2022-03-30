@@ -1,30 +1,30 @@
 import { getOffset } from "./FileExplorer";
 import { useState, useRef, useContext } from "react";
-import { NodeContext } from "../../../App";
+import { GlobalContext } from "../../../App";
 import { ContextMenu } from '../../Utility Components/Context Menu/ContextMenu'
 
 export const FileComponent = ({file, children, managerState, depth}) => {
     const [opened, setOpened] = useState(false);
     const [renaming, setRenaming] = useState(false);
-    const { selectedAreaState } = useContext(NodeContext);
-    const [selectedAreas, setSelectedAreas] = selectedAreaState;
+    const { openedFilesState } = useContext(GlobalContext);
+    const [openedFiles, openedFilesDispatch] = openedFilesState;
     const [fileManager, managerDispatch] = managerState;
     const buttonRef = useRef(null)
     const inputRef = useRef(null)
-  
-    const fileNodeAreaObject = {scope: 'window', file: file};
+
+
     const offset = getOffset(depth);
     const style = {
       width: `${offset}%`,
       marginLeft: `${100 - offset}%`
     }
   
-    function openFile() {
+    function toggleFile() {
       if (!opened) {
-        setSelectedAreas(selectedAreas.concat(fileNodeAreaObject))
+        openedFilesDispatch({type: 'open --select', file: file})
         setOpened(true);
       } else {
-        setSelectedAreas(selectedAreas.filter(area => area !== fileNodeAreaObject))
+        openedFilesDispatch({type: 'close', file: file})
       }
     }
   
@@ -39,7 +39,7 @@ export const FileComponent = ({file, children, managerState, depth}) => {
   
     return (
       <div className="file"> 
-        { renaming ? <input className="file-input" onBlur={renameFile} style={style} ref={inputRef} placeholder='Enter File Name'/>  : <button className={`file-button ${opened ? 'opened' : ''}`} onDoubleClick={openFile} style={style} ref={buttonRef}> {file.name} </button> }
+        { renaming ? <input className="file-input" onBlur={renameFile} style={style} ref={inputRef} placeholder='Enter File Name'/>  : <button className={`file-button ${opened ? 'opened' : ''}`} onDoubleClick={toggleFile} style={style} ref={buttonRef}> {file.name} </button> }
   
         <ContextMenu bindReference={buttonRef}>
           <button onClick={() => {

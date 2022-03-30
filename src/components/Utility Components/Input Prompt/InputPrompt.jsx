@@ -1,7 +1,7 @@
 import React from 'react'
 import { DynamicText } from '../Dynamic Text/DynamicText'
 
-export const InputPrompt = ({ message, type, absolute, onInput }) => {
+export const InputPrompt = ({ message, type, absolute, onInput, validation}) => {
   type = type ? type : 'text'
 
   switch (type) {
@@ -12,7 +12,7 @@ export const InputPrompt = ({ message, type, absolute, onInput }) => {
   return (
     <div className='input-prompt' style={absolute ? {position: 'absolute'} : {}}>
       <DynamicText text={message} />
-      <input onChange={onInput}> </input>
+      <input onKeyDown={onInput} > </input>
     </div>
   )
 }

@@ -19,7 +19,7 @@ export const DynamicText = ({lines: desiredLines, children, text}) => {
   return (
     <div className="dynamic-textbox">
       { children }
-      <svg className='dynamic-textbox-svg' ref={textBoxReference} viewBox={`0 0 56 18`}> 
+      <svg className='dynamic-textbox-svg' ref={textBoxReference} viewBox={`0 0 84 27`}> 
           <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" width='56' height='18' color='white'> { text } </text>
       </svg>
     </div>

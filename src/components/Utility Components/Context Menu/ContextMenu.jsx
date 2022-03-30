@@ -53,7 +53,7 @@ export const ContextMenu = ({position: initialPosition, children, bindReference}
   }
   
   function clickInsideElement(event, className) {
-    var el = event.srcElement || event.target;
+    let el = event.srcElement || event.target;
     
     if ( el.classList.contains(className) ) {
         return el;

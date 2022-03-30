@@ -5,7 +5,7 @@ import { MinimizeButton } from '../Window Buttons/MinimizeButton'
 import { MaximizeButton } from '../Window Buttons/MaximizeButton'
 import { CloseButton } from '../Window Buttons/CloseButton'
 
-export const Window = ({style, children, inTopBar, onDelete, containerReference}) => {
+export const Window = ({style, children, inTopBar, onDelete, containerReference, maximize}) => {
   const [open, setOpen] = useState(true);
   const [position, setPosition] = useState({
     left: 0,
@@ -22,7 +22,7 @@ export const Window = ({style, children, inTopBar, onDelete, containerReference}
 
   return (
     <>
-    {open && <div className="window" style={css} ref={windowReference}> 
+    {open && <div className={`window ${maximize ? 'maximize' : ''}`}  style={css} ref={windowReference}> 
       <DragSelect top position={position} setPosition={setPosition} parentRef={windowReference} style={{position: "static"}} boundingRef={containerReference} >
       {inTopBar}
       <div className="window-utility-buttons">

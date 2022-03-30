@@ -1,10 +1,10 @@
 import { useContext, } from 'react';
-import { NodeContext } from '../../App';
+import { GlobalContext } from '../../App';
 import "./bottombar.css"
 
 //types of nodes: value, variable, function, array, object, loop, class
 export const BottomBar = () => {
-  const { selectionState } = useContext(NodeContext);
+  const { selectionState } = useContext(GlobalContext);
   const [nodeSelection, setNodeSelection] = selectionState;
   
   function changeSelection(selection) {

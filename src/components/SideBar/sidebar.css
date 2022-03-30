@@ -3,21 +3,25 @@
   --sidebar-row-end: var(--bottom-bar-row-start);
   --sidebar-column-start: 1;
   --sidebar-column-end: 3;
-  --sidebar-extend-width: calc(var(--sidebar-width) * 2); 
 }
 
 #sidebar {
     grid-row: var(--sidebar-row-start) / var(--sidebar-row-end);
     grid-column: var(--sidebar-column-start) / var(--sidebar-column-end);
     grid-column-end: 2;
+    width: 100%;
     background-color: black;
     z-index: 100;
-    opacity: 0.2;
+    opacity: 0.5;
+  }
+
+  #sidebar::before {
+    content: '>>'
   }
   
 #sidebar:hover {
-  transition: grid-column-end 1s, opacity 0.5s;
-  grid-column-end: 6;
+  transition: width 0.5s, opacity 0.5s;
+  width: min(20vw, 200px);
   opacity: 1;
 }
 

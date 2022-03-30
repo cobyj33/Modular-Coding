@@ -14,21 +14,49 @@
     display: flex;
     flex-direction: row;
     justify-content: left;
-    align-items: center;
-    z-index: 100;
+    z-index: 1000;
+}
+
+.menu * {
+    z-index: 1000;
 }
 
 .menu-item {
     margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.menu-item button {
+.menu-item-button {
     background-color: #222;
     border: none;
     border-radius: 5px;
 }
 
-.menu-item button:hover {
+.menu-item-content {
+    position: absolute;
+    top: 100%;
+    background-color: #666;
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.menu-item-content * {
+    text-align: center;
+}
+
+.menu-item-button:hover {
     transition: background-color 0.2s;
-    background-color: #222;
+    font-style: italic;
+}
+
+.menu-button {
+
 }

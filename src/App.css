@@ -1,18 +1,20 @@
 :root {
   --grid-rows: 40;
   --grid-cols: 40;
+  --background-image: url('./assets/Stark.jpg')
 }
 
 html, body {
   height: 100%;
   width: 100%;
   margin: 0;
-  background: linear-gradient(to bottom, black, white, black);
+  background-image: var(--background-image);
+  background-size: cover;
 }
 
 * {
   color: white;
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'Staatliches', 'PT Sans', sans-serif;
   user-select: none;
   position: relative;
   transition: width 0.15s, height 0.15s, padding 0.15s, border 0.15s, grid-row 0.15s, grid-column 0.15s;
@@ -29,11 +31,58 @@ html, body {
   height: 100%;
 }
 
-#edit-area {
+#file-area {
   position: relative;
   grid-row: var(--menu-row-end) / var(--bottom-bar-row-start);
-  grid-column: var(--sidebar-column-end) / calc(var(--grid-cols) + 1);
+  grid-column: calc(var(--sidebar-column-end) - 1) / calc(var(--grid-cols) + 1);
 }
+
+#open-file-bar {
+  width: 100%;
+  height: 8%;
+  background: linear-gradient(to right, #222, #444);
+  border-bottom: 2px solid white;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+}
+
+#edit-area {
+  width: 100%;
+  height: 92%;
+}
+
+.open-file-indicator {
+  height: 100%;
+  width: 10%;
+  text-align: center;
+  background: radial-gradient(#222, #111, #000);
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.open-file-indicator.selected {
+  background: radial-gradient(rgb(131, 238, 154), rgb(148, 240, 215), rgb(143, 201, 240));
+}
+
+.open-file-indicator:not(.selected):hover {
+  background: radial-gradient(#333, #222, #111);
+}
+
+.file-close-button {
+  color: white;
+  background: none;
+  border: none;
+}
+
+.file-close-button:hover {
+  transition: color 0.2s;
+  color: red;
+}
+
 
 .node {
   position: absolute;

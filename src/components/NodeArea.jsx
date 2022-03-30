@@ -59,7 +59,7 @@ export const NodeArea = ({ scope, file, container }) => {
     
     return (
       <>
-        <Window inTopBar={topBar()} containerReference={container} >
+        <Window inTopBar={topBar()} containerReference={container} {...(scope === 'window' ? {maximize: true} : {})}>
           <div className='node-area' onMouseDown={startPan}>
             <AreaBackground coordinates={coordinates}/>
             <div className='coordinate-display'> 
