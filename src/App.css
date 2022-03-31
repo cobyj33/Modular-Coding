@@ -1,7 +1,7 @@
 :root {
   --grid-rows: 40;
   --grid-cols: 40;
-  --background-image: url('./assets/Stark.jpg')
+  --background-image: url('assets/Background Images/stark.jpg')
 }
 
 html, body {

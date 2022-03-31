@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export const ExpandableMenuItem = ({ children }) => {
+export const MenuExpand = ({ children }) => {
     const [opened, setOpened] = useState(opened)
 
   return (

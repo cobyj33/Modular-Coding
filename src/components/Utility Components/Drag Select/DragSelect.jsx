@@ -2,7 +2,7 @@ import { useRef } from "react";
 import "./dragselect.css";
 import $ from "jquery";
 
-export const DragSelect = ({parentRef, boundingRef, position, setPosition, left, top, right, bottom, children, style}) => {
+export const DragSelect = ({parentRef, boundingRef, position, setPosition, left, top, right, bottom, children, style, noDrag}) => {
 
 
     const dragSelector = useRef(null);
@@ -48,7 +48,7 @@ export const DragSelect = ({parentRef, boundingRef, position, setPosition, left,
 
     function startDrag(e) {
         console.log('starting drag');
-      if (e.target.tagName == "input" || e.target.tagName == "button" || !position || !dragSelector.current) {
+      if (e.target.tagName == "input" || e.target.tagName == "button" || !position || !dragSelector.current || noDrag) {
         return;
       }
 

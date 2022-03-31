@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import $ from "jquery";
 
-export const AreaBackground = ({instructions, coordinates}) => {
+export const AreaBackground = ({instructions, coordinates, backgroundImage}) => {
     const canvasRef = useRef(null);
 
     function draw() {
@@ -41,7 +41,7 @@ export const AreaBackground = ({instructions, coordinates}) => {
 
   return (
       <>
-        <canvas ref={canvasRef} className="node-area-background"></canvas>
+        <canvas ref={canvasRef} className="node-area-background" style={{ backgroundImage: `${document.documentElement.style.getPropertyValue('--background-image')}`}}></canvas>
       </>
   )
 }

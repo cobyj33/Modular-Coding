@@ -9,7 +9,7 @@ import { Menu } from "./components/Menu Bar/Menu";
 import { MenuItem } from "./components/Menu Bar/MenuItem";
 import { hash } from "./index";
 import { DynamicText } from "./components/Utility Components/Dynamic Text/DynamicText";
-import { MenuButton } from "./components/Menu Bar/MenuButton";
+import { BackgroundSelection } from "./BackgroundSelection";
 
 let fileCounter = 1;
 
@@ -130,6 +130,8 @@ function openedFilesReducer(state, action) {
 }
 
 export const GlobalContext = createContext(null);
+
+
 function App() {
     const [fileManager, managerDispatch] = useReducer(fileManagerReducer, new FileManager());
     const [openedFiles, openedFilesDispatch] = useReducer(openedFilesReducer, { files: [], selected: undefined })
@@ -142,23 +144,28 @@ function App() {
             fileManagerState: [fileManager, managerDispatch]
         };
 
+
+
     
+
+        const [backgroundSelection, setBackgroundSelection] = useState(null);
 
     return (
         <GlobalContext.Provider value={globalState}>
 
             <Menu>
                 <MenuItem text="File">
-                    <MenuButton> Save </MenuButton>
-                    <MenuButton> Open </MenuButton>
-                    <MenuButton> Save As </MenuButton>
-                    <MenuButton> New </MenuButton>
+                    <button> Save </button>
+                    <button> Open </button>
+                    <button> Save As </button>
+                    <button> New </button>
                 </MenuItem>
                 <MenuItem text="Edit">
 
                 </MenuItem>
                 <MenuItem text="View"> 
-
+                    <button onClick={() => setBackgroundSelection(true)}> Set Background </button>
+                    <button> Set Theme </button>
                 </MenuItem>
                 <MenuItem text="Help">
 
@@ -187,15 +194,10 @@ function App() {
 
                 <div id="edit-area" ref={editAreaRef}>
                     { openedFiles.selected && <NodeArea scope='window' file={openedFiles.selected} key={hash(openedFiles.selected.path + ".")} container={editAreaRef} />}
-                
-                    {/* { selectedAreas.map(areaInfo => 
-                    <NodeArea 
-                    scope={'window'} 
-                    file={areaInfo.file} 
-                    key={window.hash(areaInfo.file.path + ".")} 
-                    container={editAreaRef} /> )} */}
                 </div>
             </div>
+
+            { backgroundSelection && <BackgroundSelection closeCallback={() => setBackgroundSelection(false)}/>} 
 
             <BottomBar />
         </GlobalContext.Provider>
