@@ -4,8 +4,10 @@ export const MenuItem = ({text, children}) => {
     const [opened, setOpened] = useState(false);
     const menuItemRef = useRef(null);
 
+
+
     function checkClick(event) {
-        if (!clickInsideElement(event, 'menu-item')) {
+        if (!clickInsideElement(event, `menu-item-${text}`)) {
             close();
         }
     }
@@ -27,7 +29,7 @@ export const MenuItem = ({text, children}) => {
     }, [])
 
   return (
-    <div className='menu-item' ref={menuItemRef}>
+    <div className={`menu-item menu-item-${text}`} ref={menuItemRef}>
         <button onClick={() => opened ? close() : open()} className='menu-item-button'> {text} </button>
         { opened && <div className='menu-item-content'>
             { children }

@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect, useReducer, useContext, createContext } from 'react'
 import { AreaBackground } from './AreaBackground';
 import { Window } from './Utility Components/Window/Window';
-import $ from "jquery";
 import "./nodeArea.css";
 import { HoverPrompt } from './Utility Components/Hover Prompt/HoverPrompt';
 import { DynamicText } from './Utility Components/Dynamic Text/DynamicText';
@@ -203,6 +202,7 @@ export const NodeArea = ({ scope, file, container }) => {
 
 function nodeGraphReducer(state, action) {
   const {type, coordinates, nodeType, node} = action;
+  const newGraph = new NodeGraph(state.scope, state.nodes);
 
   function addNode(nodeType, coordinates) {
     if (!coordinates) {
@@ -211,7 +211,7 @@ function nodeGraphReducer(state, action) {
       console.error('adding a node requires a node type [nodeGraphReducer]'); return;
     }
 
-    state.addNode(nodeType, coordinates);
+    newGraph.addNode(nodeType, coordinates);
   }
 
   function moveNode(coordinates, node) {
@@ -229,7 +229,7 @@ function nodeGraphReducer(state, action) {
       console.error('deleting a node requires the node to be deleted [nodeGraphReducer]'); return;
     }
     
-    state.deleteNode(node);
+    newGraph.deleteNode(node);
   }
 
   switch (type) {
@@ -239,7 +239,5 @@ function nodeGraphReducer(state, action) {
     default: console.error('type ', type, ' is not a defined action [nodeGraphReducer]')
   }
 
-  console.log(state.length)
-
-  return new NodeGraph(state.scope, state.nodes);
+  return newGraph;
 }

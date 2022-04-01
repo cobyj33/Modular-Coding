@@ -96,7 +96,7 @@ function openedFilesReducer(state, action) {
         }
 
         newState.files = newState.files.filter(testFile => testFile.path !== file.path)
-        if (newState.selected.path == file.path) {
+        if (newState?.selected?.path == file.path) {
             newState.selected = undefined;
         }
     }

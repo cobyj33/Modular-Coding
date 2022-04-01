@@ -6,7 +6,7 @@ export class NodeGraph {
     constructor(scope, nodes) {
         console.log(nodes);
         this.scope = scope;
-        this.nodes = nodes ? nodes : [];
+        this.nodes = nodes ? [...nodes] : [];
     }
 
     get length() {

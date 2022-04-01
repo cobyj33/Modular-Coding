@@ -41,7 +41,6 @@ export const Node = ({children, node}) => {
       y: node.coordinates.y - yOffset
     }
 
-    console.log(nodeGraphDispatch);
 
     nodeGraphDispatch({type: 'move --node', node: node, coordinates: newCoordinates})
     lastMousePosition.current = currentMousePosition;
